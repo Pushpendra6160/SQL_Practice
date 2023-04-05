@@ -168,3 +168,24 @@ last_value(product_name) over(partition by product_category order by price desc
 range between unbounded preceding and unbounded following)
 as least_expensive_product
 from product;
+
+--write a sql query to find out the employee name who earn more then their manager
+
+use psingh;
+create table employee
+(
+id int primary key,
+name varchar (50),
+salary int,
+manager_id int
+);
+
+insert into employee values (1, 'joe', 70000, 3), (2, 'henry', 80000, 4),(3, 'Sam', 60000, null),(4, 'Max', 90000, null);
+
+select * from employee;
+
+select e1.name as employee
+from employee e1
+left join employee e2
+on e1.manager_id = e2.id
+where e1.salary > e2.salary;
